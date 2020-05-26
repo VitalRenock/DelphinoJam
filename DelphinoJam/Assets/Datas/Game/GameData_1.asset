@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e58c6f1becfbf5429dfacdd53bb479a, type: 3}
+  m_Name: GameData_1
+  m_EditorClassIdentifier: 
+  TerrainData: {fileID: 11400000, guid: 53abc5f1dda0bfe4eae18cd2d415abd5, type: 2}
+  CameraData: {fileID: 11400000, guid: 1a61f2caccae7904695bb8c990c8dbc7, type: 2}
+  LightData: {fileID: 11400000, guid: e7997d8312a47cb4d9ec3ac8c1233dc3, type: 2}
+  PlayerData: {fileID: 11400000, guid: 8206b61913725a84095926fcbd272423, type: 2}
