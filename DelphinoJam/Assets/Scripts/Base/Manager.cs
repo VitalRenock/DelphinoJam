@@ -35,7 +35,7 @@ public class Manager<T, DataType> : MonoBehaviour where T : MonoBehaviour where 
 
 	public virtual void Load(DataType dataToLoad)
 	{
-		DataLoaded = dataToLoad;
+		DataLoaded = Instantiate(dataToLoad);
 		GameObjectLoaded = Instantiate(dataToLoad.Prefab);
 	}
 	public virtual void Unload() 
