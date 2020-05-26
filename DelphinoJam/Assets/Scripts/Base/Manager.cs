@@ -29,6 +29,8 @@ public class Manager<T, DataType> : MonoBehaviour where T : MonoBehaviour where 
 			return;
 		}
 		_I = this as T;
+
+		//DataLoaded = (DataType)ScriptableObject.CreateInstance(typeof(DataType));
 	}
 
 	public virtual void Load(DataType dataToLoad)

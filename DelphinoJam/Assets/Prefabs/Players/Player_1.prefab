@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4251550450249849419}
   - component: {fileID: 483739291111824436}
   - component: {fileID: 4428598291687380553}
+  - component: {fileID: -4811962339140204729}
+  - component: {fileID: -9097873908023492281}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304279575421619420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 2, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -94,3 +96,31 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4811962339140204729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304279575421619420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b578545be524a4e98098575468f603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementDataLoaded: {fileID: 11400000, guid: 38be6c2160eadea49ae55d844fc39a3b, type: 2}
+  CurrentVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &-9097873908023492281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304279575421619420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b578545be524a4e98098575468f603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementDataLoaded: {fileID: 11400000, guid: 38be6c2160eadea49ae55d844fc39a3b, type: 2}
+  CurrentVelocity: {x: 0, y: 0, z: 0}
