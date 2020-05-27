@@ -6,6 +6,6 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "MovementData_X", menuName = "Datas/New Movement")]
 public class MovementData : ScriptableObject
 {
-	public float MaxSpeed;
-	public float AccelerationPower;
+	public SpeedInfos TranslationSpeed;
+	public SpeedInfos RotationSpeed;
 }

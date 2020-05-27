@@ -4,8 +4,13 @@ using UnityEngine;
 
 public static class MovementController
 {
-	public static void Translate(Transform transform, Vector3 velocity)
+	public static void Translate(Transform transform, MoveInfos moveInfos)
 	{
-		transform.Translate(velocity * Time.deltaTime);
+		transform.Translate(moveInfos.CurrentTranslationVelocity * Time.deltaTime);
+	}
+
+	public static void Rotate(Transform transform, MoveInfos moveInfos)
+	{
+		transform.Rotate(moveInfos.CurrentRotationVelocity * Time.deltaTime);
 	}
 }

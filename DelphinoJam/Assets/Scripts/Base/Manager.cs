@@ -30,12 +30,11 @@ public class Manager<T, DataType> : MonoBehaviour where T : MonoBehaviour where 
 		}
 		_I = this as T;
 
-		//DataLoaded = (DataType)ScriptableObject.CreateInstance(typeof(DataType));
 	}
 
 	public virtual void Load(DataType dataToLoad)
 	{
-		DataLoaded = Instantiate(dataToLoad);
+		DataLoaded = dataToLoad;
 		GameObjectLoaded = Instantiate(dataToLoad.Prefab);
 	}
 	public virtual void Unload() 
