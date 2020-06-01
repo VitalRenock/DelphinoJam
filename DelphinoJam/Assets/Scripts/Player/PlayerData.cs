@@ -7,6 +7,5 @@ using UnityEngine;
 public class PlayerData : Data
 {
 	public Vector3 StartPosition;
-
 	public MovementData MovementData;
 }

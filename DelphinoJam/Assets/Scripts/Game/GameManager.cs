@@ -17,9 +17,11 @@ public class GameManager : Singleton<GameManager>
 		PlayerManager.I.Load(GameDataToLoad.PlayerData);
 		CameraManager.I.Load(GameDataToLoad.CameraData);
 		LightManager.I.Load(GameDataToLoad.LightData);
+		TimeManager.I.Load();
 	}
 	public void Unload()
 	{
+		TimeManager.I.Unload();
 		LightManager.I.Unload();
 		CameraManager.I.Unload();
 		PlayerManager.I.Unload();

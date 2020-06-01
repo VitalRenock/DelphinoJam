@@ -9,7 +9,10 @@ public class PlayerManager : Manager<PlayerManager, PlayerData>
 		base.Load(dataToLoad);
 
 		Player player = GameObjectLoaded.AddComponent<Player>();
-		player.MovementDataLoaded = dataToLoad.MovementData;
+		Movement movement = GameObjectLoaded.AddComponent<Movement>();
+		
+		player.Movement = movement;
+		movement.MovementData = DataLoaded.MovementData;
 
 		GameObjectLoaded.transform.position = DataLoaded.StartPosition;
 	}
