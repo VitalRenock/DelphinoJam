@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPointerEnterHandler
 {
 	[ReadOnly] public Movement Movement;
 
@@ -16,5 +18,16 @@ public class Player : MonoBehaviour
 			Movement.AddAngularForce(new Vector3(0, Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1), 0));
 		if (Input.GetKey(KeyCode.Space))
 			Movement.AddLinearForce(Vector3.forward);
+	}
+
+
+	public void SayCoucou()
+	{
+		Debug.Log("Coucou");
+	}
+
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		Debug.Log("Interface coucou");
 	}
 }
