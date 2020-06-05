@@ -16,3 +16,4 @@ MonoBehaviour:
   CameraData: {fileID: 11400000, guid: 1a61f2caccae7904695bb8c990c8dbc7, type: 2}
   LightData: {fileID: 11400000, guid: e7997d8312a47cb4d9ec3ac8c1233dc3, type: 2}
   PlayerData: {fileID: 11400000, guid: 8206b61913725a84095926fcbd272423, type: 2}
+  ItemDataTest: {fileID: 11400000, guid: 90ab366443e5ee140909941d63188e3d, type: 2}

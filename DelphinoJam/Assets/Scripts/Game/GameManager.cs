@@ -11,6 +11,12 @@ public class GameManager : Singleton<GameManager>
 		Load();
 	}
 
+	public void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.Space))
+			ItemManager.I.CreateItem(GameDataToLoad.ItemDataTest);
+	}
+
 	public void Load()
 	{
 		TerrainManager.I.Load(GameDataToLoad.TerrainData);

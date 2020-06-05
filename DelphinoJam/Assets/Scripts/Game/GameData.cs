@@ -17,4 +17,6 @@ public class GameData : ScriptableObject
 
 	[TabGroup("Player")][AssetsOnly]
 	public PlayerData PlayerData;
+
+	public ItemData ItemDataTest;
 }

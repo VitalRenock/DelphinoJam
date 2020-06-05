@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿
 
 public class PlayerManager : Manager<PlayerManager, PlayerData>
 {
@@ -9,12 +6,11 @@ public class PlayerManager : Manager<PlayerManager, PlayerData>
 	{
 		base.Load(dataToLoad);
 
-		//Player player = GameObjectLoaded.AddComponent<Player>();
-		Player player = GameObjectLoaded.GetComponent<Player>();
-		Movement movement = GameObjectLoaded.AddComponent<Movement>();
-		
-		player.Movement = movement;
-		movement.MovementData = DataLoaded.MovementData;
+		Player player = GameObjectLoaded.AddComponent<Player>();
+
+		// Temporary
+		player.Movement = GameObjectLoaded.AddComponent<Movement>();
+		player.Movement.MovementData = DataLoaded.MovementData;
 
 		GameObjectLoaded.transform.position = DataLoaded.StartPosition;
 	}

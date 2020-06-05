@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 483739291111824436}
   - component: {fileID: 4428598291687380553}
   - component: {fileID: 1921322579739636963}
-  - component: {fileID: -6655497989179821323}
   - component: {fileID: -5850481293746386669}
   m_Layer: 0
   m_Name: Player_1
@@ -115,7 +114,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -6655497989179821323}
+        - m_Target: {fileID: 0}
           m_MethodName: SayCoucou
           m_Mode: 1
           m_Arguments:
@@ -126,19 +125,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &-6655497989179821323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304279575421619420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b578545be524a4e98098575468f603, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Movement: {fileID: 0}
 --- !u!54 &-5850481293746386669
 Rigidbody:
   m_ObjectHideFlags: 0

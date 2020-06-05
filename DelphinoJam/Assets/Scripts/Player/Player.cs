@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using System;
-using UnityEngine.UIElements;
-using UnityEngine.EventSystems;
 
-public class Player : MonoBehaviour, IPointerEnterHandler
+public class Player : MonoBehaviour
 {
 	[ReadOnly] public Movement Movement;
+	[ReadOnly] public Inventory Inventory = new Inventory() { Size = 30};
+
+	private void Awake()
+	{
+		Movement = GetComponent<Movement>();
+	}
 
 	private void Update()
 	{
@@ -18,16 +21,7 @@ public class Player : MonoBehaviour, IPointerEnterHandler
 			Movement.AddAngularForce(new Vector3(0, Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1), 0));
 		if (Input.GetKey(KeyCode.Space))
 			Movement.AddLinearForce(Vector3.forward);
-	}
-
-
-	public void SayCoucou()
-	{
-		Debug.Log("Coucou");
-	}
-
-	public void OnPointerEnter(PointerEventData eventData)
-	{
-		Debug.Log("Interface coucou");
+		if (Input.GetKeyDown(KeyCode.Tab))
+			UIManager.I.OpenCloseInventoryPanel();
 	}
 }

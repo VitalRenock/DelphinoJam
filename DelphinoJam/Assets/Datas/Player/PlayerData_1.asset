@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerData_1
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1304279575421619420, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
-  StartPosition: {x: 20, y: 2, z: 20}
+  StartPosition: {x: 2, y: 2, z: 2}
   MovementData: {fileID: 11400000, guid: 38be6c2160eadea49ae55d844fc39a3b, type: 2}

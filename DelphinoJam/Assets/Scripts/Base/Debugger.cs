@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Debugger : Singleton<Debugger>
 {
 	public bool EnableDebugger = false;
+
 
 	public void DebugMessage(string sentence)
 	{
