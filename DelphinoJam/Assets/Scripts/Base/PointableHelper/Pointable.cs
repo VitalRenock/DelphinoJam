@@ -11,27 +11,27 @@ public class Pointable : MonoBehaviour, IPointable
 	public UnityAction<PointerEventData> PointerUpAction;
 
 
-	public void OnPointerEnter(PointerEventData eventData)
+	public virtual void OnPointerEnter(PointerEventData eventData)
 	{
 		if (PointerEnterAction != null)
 			PointerEnterAction.Invoke(eventData);
 	}
-	public void OnPointerClick(PointerEventData eventData)
+	public virtual void OnPointerClick(PointerEventData eventData)
 	{
 		if (PointerClickAction != null)
 			PointerClickAction.Invoke(eventData);
 	}
-	public void OnPointerExit(PointerEventData eventData)
+	public virtual void OnPointerExit(PointerEventData eventData)
 	{
 		if (PointerExitAction != null)
 			PointerExitAction.Invoke(eventData);
 	}
-	public void OnPointerDown(PointerEventData eventData)
+	public virtual void OnPointerDown(PointerEventData eventData)
 	{
 		if (PointerDownAction != null)
 			PointerDownAction.Invoke(eventData);
 	}
-	public void OnPointerUp(PointerEventData eventData)
+	public virtual void OnPointerUp(PointerEventData eventData)
 	{
 		if (PointerUpAction != null)
 			PointerUpAction.Invoke(eventData);

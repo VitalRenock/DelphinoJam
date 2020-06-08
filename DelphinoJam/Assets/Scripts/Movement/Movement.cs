@@ -44,9 +44,11 @@ public class Movement : MonoBehaviour
 		if (CanRotate)
 			transform.Rotate(angularVelocity * MovementData.AngularSpeed * Time.deltaTime);
 	}
-	void ResetVelocities()
+	public void ResetVelocities()
 	{
-		linearVelocity = Vector3.zero;
-		angularVelocity = Vector3.zero;
+		ResetLinearVelocity();
+		ResetAngularVelocity();
 	}
+	public void ResetLinearVelocity() => linearVelocity = Vector3.zero;
+	public void ResetAngularVelocity() => angularVelocity = Vector3.zero;
 }

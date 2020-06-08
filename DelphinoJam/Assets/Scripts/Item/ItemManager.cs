@@ -22,4 +22,18 @@ public class ItemManager : Singleton<ItemManager>
 
 		return gameObject;
 	}
+	public GameObject CreateItem(ItemData itemData, Vector3 position)
+	{
+		GameObject gameObject = CreateItem(itemData);
+		gameObject.transform.position = position;
+
+		return gameObject;
+	}
+	public GameObject CreateItem(ItemData itemData, Vector3 position, Vector3 rotation)
+	{
+		GameObject gameObject = CreateItem(itemData, position);
+		gameObject.transform.eulerAngles = rotation;
+
+		return gameObject;
+	}
 }

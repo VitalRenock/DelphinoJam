@@ -11,15 +11,15 @@ GameObject:
   - component: {fileID: 82197212243580801}
   - component: {fileID: 82197212243580803}
   - component: {fileID: 82197212243580802}
-  - component: {fileID: 5283695079967666359}
-  - component: {fileID: 4022504995001278765}
+  - component: {fileID: 3094845147148963226}
+  - component: {fileID: 5419304012723908881}
   m_Layer: 5
   m_Name: InventoryGrid_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &82197212243580801
 RectTransform:
   m_ObjectHideFlags: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5283695079967666359
+--- !u!114 &3094845147148963226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &4022504995001278765
+--- !u!114 &5419304012723908881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,9 +109,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 82197212243580800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa8a25073cecca54da381944809d97d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5df81d65dcb6e3f4fa5372e49836875e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabForSlot: {fileID: 780796872417955230, guid: 21e84e30150b94e43ab218c601434a52,
-    type: 3}
+  PrefabForSlot: {fileID: 0}
   SlotsList: []
+  GridLayoutGroup: {fileID: 0}

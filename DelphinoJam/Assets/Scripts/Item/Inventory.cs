@@ -70,4 +70,18 @@ public class Inventory
 			return null;
 		}
 	}
+
+	public void SwapItems(ItemData fromItemData, ItemData toItemData)
+	{
+		Debug.Log("Swap");
+		if (!Items.Contains(fromItemData) || !Items.Contains(toItemData))
+		{
+			Debug.LogWarning("Switch items impossible, an item(s) is not contain in the list");
+			return;
+		}
+		else
+		{
+			Items.Swap(Items.IndexOf(fromItemData), Items.IndexOf(toItemData));
+		}
+	}
 }
