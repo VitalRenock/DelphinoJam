@@ -18,4 +18,9 @@ public class PlayerManager : Manager<PlayerManager, PlayerData>
 	{
 		base.Unload();
 	}
+
+	public void TestChangeJumpCount()
+	{
+		GameObjectLoaded.GetComponent<Player>().MaxJump++;
+	}
 }
