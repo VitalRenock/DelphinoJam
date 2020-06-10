@@ -21,6 +21,6 @@ public class PlayerManager : Manager<PlayerManager, PlayerData>
 
 	public void TestChangeJumpCount()
 	{
-		GameObjectLoaded.GetComponent<Player>().MaxJump++;
+		GameObjectLoaded.GetComponent<Player>().RigidController.MaxJump++;
 	}
 }

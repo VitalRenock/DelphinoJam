@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using System.Threading;
 
 [RequireComponent(typeof(Pointable))]
 [RequireComponent(typeof(Draggable))]
@@ -29,8 +30,7 @@ public class UiSlot : MonoBehaviour
 		#region Adds required components
 
 		// Add RectTransform.
-		if (!transform.TryGetComponent(out RectTransform))
-			RectTransform = gameObject.AddComponent<RectTransform>();
+		RectTransform = gameObject.GetOrAddComponent<RectTransform>();
 
 		// If no child?
 		if (transform.childCount <= 0)
@@ -43,15 +43,13 @@ public class UiSlot : MonoBehaviour
 			ImageComponent = iconSlot.AddComponent<Image>();
 		}
 		else // Else get Image Component in a first child.
-			if (!transform.GetChild(0).TryGetComponent(out ImageComponent))
-				transform.GetChild(0).gameObject.AddComponent<Image>();
+			ImageComponent = transform.GetChild(0).gameObject.GetOrAddComponent<Image>();
+
 		if (Item != null)
 			ImageComponent.sprite = Item.Icon;
 
 		// Add Pointable and his actions.
-		if (!TryGetComponent(out Pointable))
-			Pointable = gameObject.AddComponent<Pointable>();
-
+		Pointable = gameObject.GetOrAddComponent<Pointable>();
 		Pointable.PointerClickAction += PointerClickSlot;
 		Pointable.PointerEnterAction += PointerEnterSlot;
 		Pointable.PointerExitAction += PointerExitSlot;

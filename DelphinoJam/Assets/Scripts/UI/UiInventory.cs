@@ -12,22 +12,20 @@ public class UiInventory : MonoBehaviour
 
 	[TabGroup("Slots")]
 	[ReadOnly] public List<UiSlot> SlotsList;
+	[TabGroup("Slots")]
 	[ReadOnly] public UiSlot HoveredSlot;
 
-	[TabGroup("Dependencies")]
+	[FoldoutGroup("Dependencies")]
 	[ReadOnly] public GridLayoutGroup GridLayoutGroup;
 
-	private void Awake()
+	private void Awake() => GridLayoutGroup = gameObject.GetOrAddComponent<GridLayoutGroup>();
+
+
+	// !!! Temporary
+	private void Update()
 	{
-		#region Adds required components
-
-		if (!TryGetComponent(out GridLayoutGroup))
-			GridLayoutGroup = gameObject.AddComponent<GridLayoutGroup>();
-
-		// Set Spacing between slots.
-		GridLayoutGroup.spacing = Vector2.one * 5;
-
-		#endregion
+		if (Input.GetKeyDown(KeyCode.Tab))
+			UpdateSlots(FindObjectOfType<Player>().Inventory);
 	}
 
 
@@ -44,7 +42,7 @@ public class UiInventory : MonoBehaviour
 	}
 	void GenerateSlots(Inventory inventory)
 	{
-		for (int i = 0; i < inventory.Size; i++)
+		for (int i = 0; i < inventory.SizeInventory; i++)
 		{
 			GameObject generateSlot = new GameObject();
 			generateSlot.name = "Slot " + i.ToString();

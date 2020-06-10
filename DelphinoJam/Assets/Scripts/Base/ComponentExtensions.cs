@@ -33,4 +33,18 @@ public static class ComponentExtensions
 	}
 
 	#endregion
+
+	#region GameObject Extensions
+
+	public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
+	{
+		T component;
+
+		if (!gameObject.TryGetComponent(out component))
+			component = gameObject.AddComponent<T>();
+
+		return component;
+	}
+
+	#endregion
 }

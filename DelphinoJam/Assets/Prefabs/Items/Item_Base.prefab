@@ -120,4 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 0}
-  Interactable: {fileID: 0}
+  Pointable: {fileID: 0}

@@ -62,10 +62,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2616082600944348892, guid: 217200a27f26e71439e2b415dd12f7fb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c75877d6c6802da4794754b2eb3fed7c, type: 2}
     - target: {fileID: 2616082600944348894, guid: 217200a27f26e71439e2b415dd12f7fb,
         type: 3}
       propertyPath: m_Name
-      value: Item_Silver
+      value: Item_Copper
       objectReference: {fileID: 0}
     - target: {fileID: 8815714163102299929, guid: 217200a27f26e71439e2b415dd12f7fb,
         type: 3}

@@ -2,10 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
-[System.Serializable]
-public class Inventory
+public class Inventory : MonoBehaviour
 {
-	public int Size = 0;
+	public int SizeInventory = 0;
 	public List<ItemData> Items = new List<ItemData>();
 
 
@@ -23,7 +22,7 @@ public class Inventory
 
 	public bool AddItem(ItemData item) 
 	{
-		if (Items.Count < Size)
+		if (Items.Count < SizeInventory)
 		{
 			Items.Add(item);
 			return true;
@@ -56,7 +55,8 @@ public class Inventory
 		foreach (ItemData item in itemsToRemove)
 			RemoveItem(item);
 	}
-	public ItemData RemoveItemAt(int index = 0)
+
+	public ItemData TakeItemAt(int index = 0)
 	{
 		if (Items.Count > index)
 		{

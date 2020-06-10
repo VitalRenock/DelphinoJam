@@ -3,42 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
+
+[RequireComponent(typeof(RigidbodyController))]
 public class Player : MonoBehaviour
 {
-	public float MoveSpeed = 1;
-	public float TurnSpeed = 1;
-	public float JumpSpeed = 1;
-	public int MaxJump = 1;
-	public int jumpCount = 0;
-
 	[ReadOnly] public PlayerState State = new PlayerState();
-	[ReadOnly] public Rigidbody Rigidbody;
-	[ReadOnly] public Inventory Inventory = new Inventory() { Size = 30};
+
+	[FoldoutGroup("Dependencies")]
+	[ReadOnly] public RigidbodyController RigidController;
+	[FoldoutGroup("Dependencies")]
+	[ReadOnly] public Inventory Inventory;
+
 
 	private void Awake()
 	{
-		Rigidbody = GetComponent<Rigidbody>();
+		RigidController = gameObject.GetOrAddComponent<RigidbodyController>();
+		Inventory = gameObject.GetOrAddComponent<Inventory>();
 
 		State = PlayerState.Standing;
 	}
-
 	private void Update() => StateManagement();
-	//private void Update()
-	//{
-	//	StateManagement();
-
-	//	if (Input.GetKeyDown(KeyCode.Tab))
-	//		UIManager.I.OpenCloseInventoryPanel();
-
-	//	if (Input.GetKeyDown(KeyCode.Alpha0))
-	//		ItemManager.I.CreateItem(PlayerManager.I.TestItem, PlayerManager.I.TestPosition);
-	//}
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (State == PlayerState.Jumping || State == PlayerState.DoubleJumping)
 		{
 			State = PlayerState.Standing;
-			jumpCount = 0;
+			RigidController.jumpCount = 0;
 		}
 	}
 
@@ -56,10 +46,10 @@ public class Player : MonoBehaviour
 					State = PlayerState.Moving;
 					return;
 				}
-				if (Input.GetKeyDown(KeyCode.Space) && jumpCount < MaxJump)
+				if (Input.GetKeyDown(KeyCode.Space) && RigidController.jumpCount < RigidController.MaxJump)
 				{
 					State = PlayerState.Jumping;
-					Jump();
+					RigidController.Jump();
 					return;
 				}
 
@@ -80,10 +70,10 @@ public class Player : MonoBehaviour
 					State = PlayerState.Standing;
 					return;
 				}
-				if (Input.GetKeyDown(KeyCode.Space) && jumpCount < MaxJump)
+				if (Input.GetKeyDown(KeyCode.Space) && RigidController.jumpCount < RigidController.MaxJump)
 				{
 					State = PlayerState.Jumping;
-					Jump();
+					RigidController.Jump();
 					return;
 				}
 
@@ -91,8 +81,8 @@ public class Player : MonoBehaviour
 
 				#region Actions
 
-				Move();
-				Turn();
+				RigidController.Move();
+				RigidController.Turn();
 
 				#endregion
 
@@ -102,10 +92,10 @@ public class Player : MonoBehaviour
 
 				#region Conditions
 
-				if (Input.GetKeyDown(KeyCode.Space) && jumpCount < MaxJump)
+				if (Input.GetKeyDown(KeyCode.Space) && RigidController.jumpCount < RigidController.MaxJump)
 				{
 					State = PlayerState.DoubleJumping;
-					Jump();
+					RigidController.Jump();
 				}
 				// See also OnColliderEnter()
 
@@ -113,8 +103,8 @@ public class Player : MonoBehaviour
 
 				#region Actions
 
-				Move();
-				Turn();
+				//RigidController.Move();
+				RigidController.Turn();
 
 				#endregion
 
@@ -124,16 +114,16 @@ public class Player : MonoBehaviour
 
 				#region Conditions
 
-				if (Input.GetKeyDown(KeyCode.Space) && jumpCount < MaxJump)
-					Jump();
+				if (Input.GetKeyDown(KeyCode.Space) && RigidController.jumpCount < RigidController.MaxJump)
+					RigidController.Jump();
 				// See also OnColliderEnter()
 
 				#endregion
 
 				#region Actions
 
-				Move();
-				Turn();
+				//RigidController.Move();
+				RigidController.Turn();
 
 				#endregion
 
@@ -142,13 +132,6 @@ public class Player : MonoBehaviour
 			default:
 				break;
 		}
-	}
-	void Move() => Rigidbody.AddRelativeForce(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * MoveSpeed, ForceMode.Force);
-	void Turn() => Rigidbody.AddRelativeTorque(new Vector3(0, Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1), 0) * TurnSpeed, ForceMode.VelocityChange);
-	void Jump()
-	{
-		jumpCount++;
-		Rigidbody.AddRelativeForce(Vector3.up * JumpSpeed, ForceMode.Impulse);
 	}
 }
 

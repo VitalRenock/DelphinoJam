@@ -6,20 +6,21 @@ using UnityEngine.EventSystems;
 public class Item : MonoBehaviour
 {
 	[DisableInPlayMode] public ItemData ItemData;
-	[ReadOnly] public Pointable Interactable;
+	[ReadOnly] public Pointable Pointable;
 
 
 	private void Awake()
 	{
-		Interactable = GetComponent<Pointable>();
+		Pointable = gameObject.GetOrAddComponent<Pointable>();
 
-		Interactable.PointerClickAction += GiveItem;
+		Pointable.PointerClickAction += GiveItem;
 	}
 
-
+	// Add State Pattern for Collectable, Enable, ect...?
 	public void GiveItem(PointerEventData eventData)
 	{
-		bool isGived = PlayerManager.I.GameObjectLoaded.GetComponent<Player>().Inventory.AddItem(ItemData);
+		// !!! Temporary
+		bool isGived = FindObjectOfType<Player>().Inventory.AddItem(ItemData);
 
 		if (isGived)
 			DestroyItem();

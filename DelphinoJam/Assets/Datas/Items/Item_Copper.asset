@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Copper
   Icon: {fileID: 21300000, guid: a3643d7022c5d3a4386c8809b963a0b6, type: 3}
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 6328551448820781545, guid: 9eed20285573e9f4e8eea4cd4295cf75, type: 3}

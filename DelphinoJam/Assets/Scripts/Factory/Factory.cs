@@ -13,9 +13,9 @@ public class Factory : MonoBehaviour
 	public Energy Energy;
 
 	[TabGroup("Inventory")]
-	public Inventory InputInventory = new Inventory() { Size = 10 };
+	public Inventory InputInventory = new Inventory() { SizeInventory = 10 };
 	[TabGroup("Inventory")]
-	public Inventory OutputInventory = new Inventory() { Size = 10 };
+	public Inventory OutputInventory = new Inventory() { SizeInventory = 10 };
 	
 	[TabGroup("Recipes")]
 	public List<RecipeData> RecipesList;
@@ -33,7 +33,7 @@ public class Factory : MonoBehaviour
 	// Temporary
 	public void GetItemInPlayerInventory(PointerEventData eventData)
 	{
-		InputInventory.AddItem(PlayerManager.I.GameObjectLoaded.GetComponent<Player>().Inventory.RemoveItemAt());
+		InputInventory.AddItem(PlayerManager.I.GameObjectLoaded.GetComponent<Player>().Inventory.TakeItemAt());
 	}
 
 	public void FactoryStartStop(PointerEventData eventData)
