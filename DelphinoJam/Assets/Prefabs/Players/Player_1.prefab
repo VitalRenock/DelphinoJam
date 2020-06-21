@@ -109,7 +109,7 @@ Rigidbody:
   m_GameObject: {fileID: 1304279575421619420}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.3
+  m_Drag: 0.5
   m_AngularDrag: 30
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -128,12 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42d000a6a8e57345b8bf57b09abb4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 0}
   MoveSpeed: 10
   TurnSpeed: 8
   JumpSpeed: 10
   MaxJump: 2
   jumpCount: 0
+  Rigidbody: {fileID: 0}
 --- !u!114 &4738524917538906528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +146,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa885a31873a0e4592c231113d93619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeInventory: 30
+  Name: PlayerInventory
+  MaxSize: 10
   Items: []
+  onItemAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8627298093936898610
 MonoBehaviour:
   m_ObjectHideFlags: 0

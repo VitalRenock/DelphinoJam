@@ -1,12 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour
 {
-	public int SizeInventory = 0;
-	public List<ItemData> Items = new List<ItemData>();
-
+	[DisableInPlayMode] public string Name;
+	[DisableInPlayMode] public int MaxSize = 0;
+	[DisableInPlayMode] public List<ItemData> Items = new List<ItemData>();
+	public UnityEvent onItemAdded;
+	public UnityEvent onItemRemoved;
+	public Event Event;
 
 	public void LoadInventory(List<ItemData> itemsToLoad)
 	{
@@ -22,14 +27,15 @@ public class Inventory : MonoBehaviour
 
 	public bool AddItem(ItemData item) 
 	{
-		if (Items.Count < SizeInventory)
+		if (Items.Count < MaxSize)
 		{
 			Items.Add(item);
+			onItemAdded?.Invoke();
 			return true;
 		}
 		else
 		{
-			Debug.LogWarning("Inventory full");
+			Debug.LogWarning("Inventory full.");
 			return false;
 		}
 	}
@@ -39,21 +45,39 @@ public class Inventory : MonoBehaviour
 			if (!AddItem(item))
 				break;
 	}
+	public bool CanAddItem()
+	{
+		if (Items.Count < MaxSize)
+			return true;
+		else
+			return false;
+	}
 
 	public bool RemoveItem(ItemData item) 
 	{
 		if (Items.Contains(item))
 		{
 			Items.Remove(item);
+			onItemRemoved?.Invoke();
 			return true;
 		}
-		else
+		else 
+		{
+			Debug.LogWarning("Can remove item.");
 			return false;
+		}
 	}
 	public void RemoveItem(List<ItemData> itemsToRemove)
 	{
 		foreach (ItemData item in itemsToRemove)
 			RemoveItem(item);
+	}
+	public bool CanRemoveItem(ItemData item)
+	{
+		if (Items.Contains(item))
+			return true;
+		else
+			return false;
 	}
 
 	public ItemData TakeItemAt(int index = 0)
@@ -66,8 +90,17 @@ public class Inventory : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogWarning("Index outside inventory!");
+			Debug.LogWarning("Index outside inventory.");
 			return null;
+		}
+	}
+
+	public void TransferAnItem(ItemData item, Inventory inventoryTarget)
+	{
+		if (CanRemoveItem(item) && inventoryTarget.CanAddItem())
+		{
+			RemoveItem(item);
+			inventoryTarget.AddItem(item);
 		}
 	}
 

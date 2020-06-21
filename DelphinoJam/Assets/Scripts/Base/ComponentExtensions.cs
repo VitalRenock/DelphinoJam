@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class ComponentExtensions
@@ -36,6 +37,15 @@ public static class ComponentExtensions
 
 	#region GameObject Extensions
 
+	public static T[] AddComponents<T>(this GameObject gameObject, int number = 1) where T : Component
+	{
+		T[] components = new T[number];
+		for (int i = 0; i < number; i++)
+			components[i] = gameObject.AddComponent<T>();
+
+		return components;
+	}
+
 	public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
 	{
 		T component;
@@ -44,6 +54,32 @@ public static class ComponentExtensions
 			component = gameObject.AddComponent<T>();
 
 		return component;
+	}
+	public static List<T> GetOrAddComponents<T>(this GameObject gameObject, int number = 1) where T : Component
+	{
+		List<T> components = gameObject.GetComponents<T>().ToList();
+
+		int count = number - components.Count;
+		for (int i = 0; i < count; i++)
+			components.Add(gameObject.AddComponent<T>());
+
+		return components;
+	}
+
+	public static GameObject AddChild(this GameObject gameObject, string name = "New GameObject")
+	{
+		GameObject child = new GameObject(name);
+		child.transform.SetParent(gameObject.transform);
+		return child;
+	}
+	public static List<GameObject> AddChilds(this GameObject gameObject, int count, string name = "New GameObject")
+	{
+		List<GameObject> childs = new List<GameObject>();
+
+		for (int i = 0; i < count; i++)
+			childs.Add(AddChild(gameObject, name + "_" + i.ToString()));
+
+		return childs;
 	}
 
 	#endregion

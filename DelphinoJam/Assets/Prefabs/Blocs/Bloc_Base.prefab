@@ -123,6 +123,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49df73c387a84fa47ae7ec07795bc942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColorObject: 1
+  ColorBlock:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0, g: 0.5, b: 1, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
+    m_ColorMultiplier: 0
+    m_FadeDuration: 0
 --- !u!114 &3881727306304738393
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,31 +6,6 @@ public class GameManager : Singleton<GameManager>
 {
 	public GameData GameDataToLoad;
 
-	private void Awake()
-	{
-		Load();
-	}
-
-	public void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.Space))
-			ItemManager.I.CreateItem(GameDataToLoad.ItemDataTest);
-	}
-
-	public void Load()
-	{
-		TerrainManager.I.Load(GameDataToLoad.TerrainData);
-		PlayerManager.I.Load(GameDataToLoad.PlayerData);
-		CameraManager.I.Load(GameDataToLoad.CameraData);
-		LightManager.I.Load(GameDataToLoad.LightData);
-		TimeManager.I.Load();
-	}
-	public void Unload()
-	{
-		TimeManager.I.Unload();
-		LightManager.I.Unload();
-		CameraManager.I.Unload();
-		PlayerManager.I.Unload();
-		TerrainManager.I.Unload();
-	}
+	void Load() { }
+	void Unload() { }
 }

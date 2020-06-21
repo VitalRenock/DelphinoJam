@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 180519539636192769}
   - component: {fileID: 180519539636192770}
   - component: {fileID: 180519539636192771}
-  - component: {fileID: 180519539636192783}
-  - component: {fileID: 180519539636192782}
+  - component: {fileID: 3168568659212965582}
+  - component: {fileID: 4225235631646493551}
+  - component: {fileID: 3288426580337682330}
+  - component: {fileID: 9079439055458866198}
   m_Layer: 0
   m_Name: Factory_Base
   m_TagString: Untagged
@@ -29,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180519539636192772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 9.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4cf26ceb406d8c64aa1bd934627b9f3a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &180519539636192783
+--- !u!114 &3168568659212965582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,16 +125,13 @@ MonoBehaviour:
     onOverConsumption:
       m_PersistentCalls:
         m_Calls: []
-  InputInventory:
-    Size: 10
-    Items: []
-  OutputInventory:
-    Size: 10
-    Items: []
+  InventoryInput: {fileID: 3288426580337682330}
+  InventoryOutput: {fileID: 9079439055458866198}
+  PanelFactoryUI: {fileID: 0}
   RecipesList: []
   RecipeSelected: {fileID: 0}
-  Pointable: {fileID: 0}
---- !u!114 &180519539636192782
+  Pointable: {fileID: 4225235631646493551}
+--- !u!114 &4225235631646493551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,3 +143,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49df73c387a84fa47ae7ec07795bc942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+    onSimpleEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onPointerClick:
+    m_PersistentCalls:
+      m_Calls: []
+    onSimpleEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+    onSimpleEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onPointerDown:
+    m_PersistentCalls:
+      m_Calls: []
+    onSimpleEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  onPointerUp:
+    m_PersistentCalls:
+      m_Calls: []
+    onSimpleEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  ColorObject: 1
+  ColorBlock:
+    m_NormalColor: {r: 1, g: 0.8509804, b: 0.2509804, a: 1}
+    m_HighlightedColor: {r: 0.27948916, g: 1, b: 0.0047169924, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
+    m_ColorMultiplier: 0
+    m_FadeDuration: 0
+--- !u!114 &3288426580337682330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180519539636192772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa885a31873a0e4592c231113d93619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Input Inventory
+  MaxSize: 10
+  Items: []
+  onItemAdded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: UpdateCells
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onItemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &9079439055458866198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180519539636192772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa885a31873a0e4592c231113d93619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Output Inventory
+  MaxSize: 10
+  Items: []
+  onItemAdded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: UpdateCells
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onItemRemoved:
+    m_PersistentCalls:
+      m_Calls: []

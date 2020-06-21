@@ -82,5 +82,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bloc_Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 4027929465061439690, guid: fcbe3f7283ba91c459ada65533b4e20d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b898b3a385f8cea4ab1b3495c1e3f3c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcbe3f7283ba91c459ada65533b4e20d, type: 3}

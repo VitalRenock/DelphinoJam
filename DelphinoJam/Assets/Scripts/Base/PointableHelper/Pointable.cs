@@ -1,39 +1,66 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Pointable : MonoBehaviour, IPointable
 {
-	public UnityAction<PointerEventData> PointerEnterAction;
-	public UnityAction<PointerEventData> PointerClickAction;
-	public UnityAction<PointerEventData> PointerExitAction;
-	public UnityAction<PointerEventData> PointerDownAction;
-	public UnityAction<PointerEventData> PointerUpAction;
+	[TabGroup("Events")] public UnityEvent onPointerEnter = new UnityEvent();
+	[TabGroup("Events")] public UnityEvent onPointerClick = new UnityEvent();
+	[TabGroup("Events")] public UnityEvent onPointerExit = new UnityEvent();
+	[TabGroup("Events")] public UnityEvent onPointerDown = new UnityEvent();
+	[TabGroup("Events")] public UnityEvent onPointerUp = new UnityEvent();
+
+	[TabGroup("Events")] public UnityEvent<PointerEventData> onPointerEnterEventData;
+	[TabGroup("Events")] public UnityEvent<PointerEventData> onPointerClickEventData;
+	[TabGroup("Events")] public UnityEvent<PointerEventData> onPointerExitEventData;
+	[TabGroup("Events")] public UnityEvent<PointerEventData> onPointerDownEventData;
+	[TabGroup("Events")] public UnityEvent<PointerEventData> onPointerUpEventData;
+
+	[TabGroup("Coloration")] public bool ColorObject;
+	[TabGroup("Coloration")][ShowIf("ColorObject")] public ColorBlock ColorBlock;
 
 
 	public virtual void OnPointerEnter(PointerEventData eventData)
 	{
-		if (PointerEnterAction != null)
-			PointerEnterAction.Invoke(eventData);
+		onPointerEnter?.Invoke();
+		onPointerEnterEventData?.Invoke(eventData);
+
+		if (ColorObject)
+			GetComponent<MeshRenderer>().material.color = ColorBlock.highlightedColor;
 	}
 	public virtual void OnPointerClick(PointerEventData eventData)
 	{
-		if (PointerClickAction != null)
-			PointerClickAction.Invoke(eventData);
+		onPointerClick?.Invoke();
+		onPointerClickEventData?.Invoke(eventData);
+
+		if (ColorObject)
+			GetComponent<MeshRenderer>().material.color = ColorBlock.pressedColor;
 	}
 	public virtual void OnPointerExit(PointerEventData eventData)
 	{
-		if (PointerExitAction != null)
-			PointerExitAction.Invoke(eventData);
+		onPointerExit?.Invoke();
+		onPointerExitEventData?.Invoke(eventData);
+
+		if (ColorObject)
+			GetComponent<MeshRenderer>().material.color = ColorBlock.normalColor;
 	}
 	public virtual void OnPointerDown(PointerEventData eventData)
 	{
-		if (PointerDownAction != null)
-			PointerDownAction.Invoke(eventData);
+		onPointerDown?.Invoke();
+		onPointerDownEventData?.Invoke(eventData);
+
+		if (ColorObject)
+			GetComponent<MeshRenderer>().material.color = ColorBlock.pressedColor;
 	}
 	public virtual void OnPointerUp(PointerEventData eventData)
 	{
-		if (PointerUpAction != null)
-			PointerUpAction.Invoke(eventData);
+		onPointerUp?.Invoke();
+		onPointerUpEventData?.Invoke(eventData);
+
+		if (ColorObject)
+			GetComponent<MeshRenderer>().material.color = ColorBlock.normalColor;
 	}
 }

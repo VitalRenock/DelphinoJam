@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
-using System.Drawing;
 using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(Pointable))]
+
 public class Factory : MonoBehaviour
 {
 	[TabGroup("Energy")]
 	public Energy Energy;
 
-	[TabGroup("Inventory")]
-	public Inventory InputInventory = new Inventory() { SizeInventory = 10 };
-	[TabGroup("Inventory")]
-	public Inventory OutputInventory = new Inventory() { SizeInventory = 10 };
+
+	[TabGroup("Inventory")] public Inventory InventoryInput;
+	[TabGroup("Inventory")] public Inventory InventoryOutput;
+	[TabGroup("Inventory")] public PanelUI PanelFactoryUI;
 	
 	[TabGroup("Recipes")]
 	public List<RecipeData> RecipesList;
@@ -24,17 +23,18 @@ public class Factory : MonoBehaviour
 
 	[ReadOnly] public Pointable Pointable;
 
-	private void Awake()
+
+	private void Reset()
 	{
-		Pointable = GetComponent<Pointable>();
-		Pointable.PointerClickAction += GetItemInPlayerInventory;
+		List<Inventory> inventories = gameObject.GetOrAddComponents<Inventory>(2);
+		InventoryInput = inventories[0];
+		InventoryOutput = inventories[1];
+		InventoryInput.Name = "Input Inventory";
+		InventoryOutput.Name = "Output Inventory";
+
+		Pointable = gameObject.GetOrAddComponent<Pointable>();
 	}
 
-	// Temporary
-	public void GetItemInPlayerInventory(PointerEventData eventData)
-	{
-		InputInventory.AddItem(PlayerManager.I.GameObjectLoaded.GetComponent<Player>().Inventory.TakeItemAt());
-	}
 
 	public void FactoryStartStop(PointerEventData eventData)
 	{
@@ -75,13 +75,13 @@ public class Factory : MonoBehaviour
 		if (!Energy.IsOn)
 			StopFactory();
 
-		for (int i = 0; i < InputInventory.Items.Count; i++)
-			if (InputInventory.Items[i] == RecipeSelected.InputItem)
+		for (int i = 0; i < InventoryInput.Items.Count; i++)
+			if (InventoryInput.Items[i] == RecipeSelected.InputItem)
 			{
 				Debugger.I.DebugMessage("Manufacturing");
 
-				if (OutputInventory.AddItem(RecipeSelected.OutputItem))
-					InputInventory.RemoveItem(RecipeSelected.InputItem);
+				if (InventoryOutput.AddItem(RecipeSelected.OutputItem))
+					InventoryInput.RemoveItem(RecipeSelected.InputItem);
 
 				//UIManager.I.UIInventoryFactoryInput.UpdateSlots(InputInventory);
 				//UIManager.I.UIInventoryFactoryOutput.UpdateSlots(OutputInventory);
@@ -90,4 +90,18 @@ public class Factory : MonoBehaviour
 			else
 				Debugger.I.DebugMessage("No item to manufacturing!");
 	}
+
+
+	//public void GetItemInPlayerInventory()
+	//{
+	//	ItemData itemData = FindObjectOfType<Player>().Inventory.TakeItemAt();
+	//	if (itemData)
+	//	{
+	//		InventoryInput.AddItem(itemData);
+
+	//		InventoryUI[] inventoryUIs = FindObjectsOfType<InventoryUI>();
+	//		foreach (InventoryUI inventoryUI in inventoryUIs)
+	//			inventoryUI.UpdateCells();
+	//	}
+	//}
 }
