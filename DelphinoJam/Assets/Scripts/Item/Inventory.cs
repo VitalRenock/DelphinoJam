@@ -117,4 +117,6 @@ public class Inventory : MonoBehaviour
 			Items.Swap(Items.IndexOf(fromItemData), Items.IndexOf(toItemData));
 		}
 	}
+
+
 }

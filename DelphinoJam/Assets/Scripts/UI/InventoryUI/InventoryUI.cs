@@ -1,7 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,7 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
 	[FoldoutGroup("Needed References")]
-	[SceneObjectsOnly]public Inventory InventoryTarget;
+	[SceneObjectsOnly] public Inventory InventoryTarget;
 	[FoldoutGroup("Needed References")]
 	[AssetsOnly] public GameObject CellPrefab;
 
@@ -24,19 +23,24 @@ public class InventoryUI : MonoBehaviour
 	public void UpdateCells()
 	{
 		DestroyCells();
-		GenerateCells();
+		GenerateAllCells();
 		FillCells();
 	}
-	void GenerateCells()
-	{
-		DestroyCells();
 
-		if (CellPrefab)
-			for (int i = 0; i < InventoryTarget.MaxSize; i++)
-				Cells.Add(new InventoryCellUI(this));
-		else
-			for (int i = 0; i < InventoryTarget.MaxSize; i++)
-				Cells.Add(new InventoryCellUI(this));
+	void GenerateCell() => Cells.Add(new InventoryCellUI(this));
+	void GenerateAllCells()
+	{
+		for (int i = 0; i < InventoryTarget.MaxSize; i++)
+			GenerateCell();
+	}
+
+	void DestroyCell(InventoryCellUI inventoryCell)
+	{
+		if (Cells.Contains(inventoryCell))
+		{
+			Destroy(inventoryCell.GameObject);
+			Cells.Remove(inventoryCell);
+		}
 	}
 	void DestroyCells()
 	{
@@ -45,6 +49,7 @@ public class InventoryUI : MonoBehaviour
 
 		Cells.Clear();
 	}
+
 	void FillCells()
 	{
 		if (InventoryTarget)
