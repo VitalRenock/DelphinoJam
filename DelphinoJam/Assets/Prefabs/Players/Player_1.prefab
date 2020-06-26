@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3071861197667118195}
   - component: {fileID: 4738524917538906528}
   - component: {fileID: 8627298093936898610}
+  - component: {fileID: 1022723439}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Untagged
@@ -149,12 +150,6 @@ MonoBehaviour:
   Name: PlayerInventory
   MaxSize: 10
   Items: []
-  onItemAdded:
-    m_PersistentCalls:
-      m_Calls: []
-  onItemRemoved:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &8627298093936898610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +165,38 @@ MonoBehaviour:
   State: 0
   RigidController: {fileID: 0}
   Inventory: {fileID: 0}
+  StatsComponent: {fileID: 0}
+--- !u!114 &1022723439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304279575421619420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd97042a1ef1fb4e8dcbf44a6c9c617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadAtAwake: 0
+  StatsGroupData: {fileID: 0}
+  AllStats:
+    StatsInts:
+    - name: Life
+      currentValue: 100
+      MinValue: 0
+      MaxValue: 100
+      onStatChanged:
+        m_PersistentCalls:
+          m_Calls: []
+    - name: Armor
+      currentValue: 50
+      MinValue: 0
+      MaxValue: 200
+      onStatChanged:
+        m_PersistentCalls:
+          m_Calls: []
+    StatsFloats: []
 --- !u!1 &6509808034664067258
 GameObject:
   m_ObjectHideFlags: 0

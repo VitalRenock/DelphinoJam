@@ -9,20 +9,27 @@ public class Player : MonoBehaviour
 {
 	[ReadOnly] public PlayerState State = new PlayerState();
 
-	[FoldoutGroup("Dependencies")]
-	[ReadOnly] public RigidbodyController RigidController;
-	[FoldoutGroup("Dependencies")]
-	[ReadOnly] public Inventory Inventory;
+	[FoldoutGroup("Dependencies")] [ReadOnly] 
+	public RigidbodyController RigidController;
+
+	[FoldoutGroup("Dependencies")] [ReadOnly]
+	public Inventory Inventory;
+
+	[FoldoutGroup("Dependencies")] [ReadOnly]
+	public StatsComponent StatsComponent;
 
 
 	private void Awake()
 	{
 		RigidController = gameObject.GetOrAddComponent<RigidbodyController>();
 		Inventory = gameObject.GetOrAddComponent<Inventory>();
+		StatsComponent = gameObject.GetOrAddComponent<StatsComponent>();
 
 		State = PlayerState.Standing;
 	}
+
 	private void Update() => StateManagement();
+
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (State == PlayerState.Jumping || State == PlayerState.DoubleJumping)
