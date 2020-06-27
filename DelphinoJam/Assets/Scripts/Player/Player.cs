@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-
+using UnityEngine.PlayerLoop;
 
 [RequireComponent(typeof(RigidbodyController))]
 public class Player : MonoBehaviour
@@ -28,10 +28,11 @@ public class Player : MonoBehaviour
 		State = PlayerState.Standing;
 	}
 
-	private void Update() => StateManagement();
+	//private void Update() => StateManagement();
 
 	private void OnCollisionEnter(Collision collision)
 	{
+		// Reset Jump
 		if (State == PlayerState.Jumping || State == PlayerState.DoubleJumping)
 		{
 			State = PlayerState.Standing;

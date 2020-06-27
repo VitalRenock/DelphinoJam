@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
+
+[RequireComponent(typeof(VerticalLayoutGroup), typeof(ContentSizeFitter))]
 public class MessageManager : Singleton<MessageManager>
 {
 	public float TimeDisplayed;
 	public float TimeBeforePost;
 	public GameObject PrefabMessage;
+	public UnityEvent onMessagePosted;
 
-	[ShowInInspector][ReadOnly]
+	[ShowInInspector]
 	Queue<GameObject> messagesDisplayed = new Queue<GameObject>();
+
 
 	public void Post(string title, string text)
 	{
@@ -65,14 +70,27 @@ public class MessageManager : Singleton<MessageManager>
 	{
 		StartCoroutine(InstantiateDelayedMessage(messages, timeDisplayed, timeBeforePost));
 	}
+	public void RemoveAllMessagesDisplayed()
+	{
+		StopAllCoroutines();
 
-	private void InstantiateMessage(MessageData message)
+		while (messagesDisplayed.Count > 0)
+		{
+			GameObject messageToDelete = messagesDisplayed.Dequeue();
+			Destroy(messageToDelete);
+		}
+	}
+
+
+	void InstantiateMessage(MessageData message)
 	{
 		GameObject gameObjectToInstaniate = Instantiate(message.PrefabMessage, transform);
 		SetMessage(gameObjectToInstaniate, message);
 		messagesDisplayed.Enqueue(gameObjectToInstaniate);
+
+		onMessagePosted?.Invoke();
 	}
-	private void SetMessage(GameObject gameObjectToInstantiate, MessageData message)
+	void SetMessage(GameObject gameObjectToInstantiate, MessageData message)
 	{
 		Text textComponent = gameObjectToInstantiate.transform.GetChild(0).GetComponent<Text>();
 		textComponent.text = message.Title;
@@ -83,13 +101,13 @@ public class MessageManager : Singleton<MessageManager>
 		gameObjectToInstantiate.transform.GetChild(2).GetComponent<Image>().sprite = message.SpriteSide;
 		gameObjectToInstantiate.transform.GetComponent<Image>().sprite = message.SpriteBackground;
 	}
-	private IEnumerator InstantiateDelayedMessage(MessageData message, float timeDisplayed, float timeBeforePost)
+	IEnumerator InstantiateDelayedMessage(MessageData message, float timeDisplayed, float timeBeforePost)
 	{
 		yield return new WaitForSeconds(timeBeforePost);
 		InstantiateMessage(message);
 		StartCoroutine(RemoveAfterSecondes(timeDisplayed));
 	}
-	private IEnumerator InstantiateDelayedMessage(List<MessageData> messages, float timeDisplayed, float timeBeforePost)
+	IEnumerator InstantiateDelayedMessage(List<MessageData> messages, float timeDisplayed, float timeBeforePost)
 	{
 		foreach (MessageData message in messages)
 		{
@@ -98,21 +116,10 @@ public class MessageManager : Singleton<MessageManager>
 			StartCoroutine(RemoveAfterSecondes(timeDisplayed));
 		}
 	}
-	private IEnumerator RemoveAfterSecondes(float time)
+	IEnumerator RemoveAfterSecondes(float time)
 	{
 		yield return new WaitForSeconds(time);
 		GameObject messageToDelete = messagesDisplayed.Dequeue();
 		Destroy(messageToDelete);
-	}
-
-	public void RemoveAllMessagesDisplayed()
-	{
-		StopAllCoroutines();
-
-		while (messagesDisplayed.Count > 0)
-		{
-			GameObject messageToDelete = messagesDisplayed.Dequeue();
-			Destroy(messageToDelete);
-		}
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 
-public class Entity : MonoBehaviour
+public class EntityInstantiation : MonoBehaviour
 {
 	[TabGroup("Identity")]
 	public Identity Identity;
