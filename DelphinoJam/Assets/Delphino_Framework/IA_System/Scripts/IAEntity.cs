@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 
 [RequireComponent(typeof(NavMeshAgent), typeof(MoveIAProcessor))]
-public class EnemyEntity : MonoBehaviour, IEntity
+public class IAEntity : MonoBehaviour, IEntity
 {
 	NavMeshAgent navMeshAgent;
 	MoveIAProcessor moveIAProcessor;
