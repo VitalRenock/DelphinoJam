@@ -17,9 +17,9 @@ public class Factory : MonoBehaviour
 	[TabGroup("Inventory")] public PanelUI PanelFactoryUI;
 	
 	[TabGroup("Recipes")]
-	public List<RecipeData> RecipesList;
+	public List<ItemRecipeData> RecipesList;
 	[TabGroup("Recipes")][ReadOnly]
-	public RecipeData RecipeSelected;
+	public ItemRecipeData RecipeSelected;
 
 	[ReadOnly] public Pointable Pointable;
 

@@ -1,60 +1,85 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
-[RequireComponent(typeof(PlayerMoveProcessor), typeof(StatsComponent))]
+[RequireComponent(typeof(TransformProcessor), typeof(StatsComponent))]
 public class PlayerEntity : MonoBehaviour, IEntity
 {
-	PlayerMoveProcessor playerMoveProcessor;
-	StatsComponent statsComponent;
+	// Temporary MoveSpeed
+	public float MoveSpeed;
+	public float StrafeSpeed;
+	public float RotateSpeed;
+	public float CamRotateSpeed;
 
-	// Temporary Stamina
+	TransformProcessor transformProcessor;
+
+	StatsIntProcessor statsIntProcessor;
+	StatsComponent statsComponent;
+	// Temporary Stamina shortcut
 	StatsInt Stamina;
 
-	private void Awake() 
+	Camera cameraPlayer;
+
+	private void Awake()
 	{
-		playerMoveProcessor = GetComponent<PlayerMoveProcessor>();
+		transformProcessor = GetComponent<TransformProcessor>();
 		statsComponent = GetComponent<StatsComponent>();
+		statsIntProcessor = GetComponent<StatsIntProcessor>();
 
 		// Temporary Stamina
 		Stamina = statsComponent.GetStatsInt("Stamina");
-	}
-	private void Update() => CommandCalls();
 
-	void CommandCalls()
+		cameraPlayer = GetComponentInChildren<Camera>();
+	}
+
+
+	public void MoveCommandCalls(float input)
 	{
-		Vector3 direction = InputsManager.I.ReadMoveInput();
+		// Stamina...
+		float finalSpeed = input * MoveSpeed * Time.deltaTime;
+		CommandTransformTranslate command = new CommandTransformTranslate(transform, Axis.Z, finalSpeed, Space.Self);
+		transformProcessor.ExecuteCommand(command);
+	}
+	public void StrafeCommandCalls(float input)
+	{
+		// Stamina...
+		float finalSpeed = input * StrafeSpeed * Time.deltaTime;
+		CommandTransformTranslate command = new CommandTransformTranslate(transform, Axis.X, finalSpeed, Space.Self);
+		transformProcessor.ExecuteCommand(command);
+	}
+	public void RotateCommandCalls(float input)
+	{
+		// Stamina...
+		float finalSpeed = input * RotateSpeed * Time.deltaTime;
+		CommandTransformRotate command = new CommandTransformRotate(transform, Axis.Y, finalSpeed, Space.Self);
+		transformProcessor.ExecuteCommand(command);
+	}
+	public void RotateCameraCommandCalls(float input)
+	{
+		float finalSpeed = -input * CamRotateSpeed * Time.deltaTime;
+		CommandTransformRotate command = new CommandTransformRotate(cameraPlayer.transform, Axis.X, finalSpeed, Space.Self);
+		transformProcessor.ExecuteCommand(command);
+	}
+	public void UndoTransformProcessor() => transformProcessor.UndoCommand();
 
-		// Temporary Stamina
-		if (InputsManager.I.ReadJumpInput() && Stamina.CurrentValue > 0)
-		{
-			if (Stamina.CurrentValue > 5)
-			{
-				PlayerJumpCommand jumpCommand = new PlayerJumpCommand(Jump);
-				playerMoveProcessor.ExecuteCommand(jumpCommand);
-			}
 
-			Stamina.RemoveValue(Mathf.RoundToInt(12000f * Time.deltaTime));
-		}
-		else if (direction != Vector3.zero && Stamina.CurrentValue > 0)
+	public void CameraHitCalls(RaycastHit raycastHit)
+	{
+		if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Terrain"))
 		{
-			if (Stamina.CurrentValue > 5)
-			{
-				PlayerMoveCommand moveCommand = new PlayerMoveCommand(transform, direction);
-				playerMoveProcessor.ExecuteCommand(moveCommand);
-			}
-
-			Stamina.RemoveValue(Mathf.RoundToInt(120f * Time.deltaTime));
+			Debug.Log(raycastHit.transform.name);
 		}
-		else if (InputsManager.I.ReadUndoInput())
+		else if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Resource"))
 		{
-			playerMoveProcessor.UndoCommand();
-		}
-		else
-		{
-			Stamina.AddValue(Mathf.RoundToInt(180f * Time.deltaTime));
+			Debug.Log(raycastHit.transform.name);
+			StatsComponent statsComponent = raycastHit.transform.gameObject.GetComponent<StatsComponent>();
+			statsComponent.GetStatsInt("Life").RemoveValue(10);
 		}
 	}
+
+	#region Temporary Jump
 
 	// Temporary Jump
 	Coroutine coroutineIsJumping;
@@ -83,4 +108,6 @@ public class PlayerEntity : MonoBehaviour, IEntity
 		transform.position = new Vector3(transform.position.x, startY, transform.position.z);
 		coroutineIsJumping = null;
 	}
+
+	#endregion
 }

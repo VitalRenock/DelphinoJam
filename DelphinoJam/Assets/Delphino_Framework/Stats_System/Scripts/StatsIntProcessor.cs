@@ -1,4 +1,8 @@
-﻿public class PlayerMoveProcessor : CommandProcessor
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StatsIntProcessor : CommandProcessor
 {
 	public override void ExecuteCommand(Command command)
 	{

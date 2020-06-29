@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using UnityEngine.Events;
-
-[CreateAssetMenu(fileName = "Item_X", menuName = "Datas/New Item")]
+[CreateAssetMenu(fileName = "Item_X", menuName = "Delphino Framework/Item System/New Item")]
 public class ItemData : ScriptableObject
 {
 	public string Name;
@@ -12,4 +10,5 @@ public class ItemData : ScriptableObject
 	public GameObject Prefab;
 }
 
+[System.Serializable]
 public class ItemDataEvent : UnityEvent<ItemData> { }

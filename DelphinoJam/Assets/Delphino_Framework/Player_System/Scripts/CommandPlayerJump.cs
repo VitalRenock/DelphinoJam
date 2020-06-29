@@ -1,10 +1,10 @@
 ﻿using UnityEngine.Events;
 
-public class PlayerJumpCommand : Command
+public class CommandPlayerJump : Command
 {
 	UnityAction jumpAction;
 
-	public PlayerJumpCommand(UnityAction jumpAction) : base()
+	public CommandPlayerJump(UnityAction jumpAction) : base()
 	{
 		this.jumpAction = jumpAction;
 	}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public static class ComponentExtensions
 {
@@ -16,8 +17,16 @@ public static class ComponentExtensions
 		return new Vector3(Mathf.Round(vector.x), Mathf.Round(vector.y), Mathf.Round(vector.z));
 	}
 
-	#endregion
+	public static Vector2 RandomRange(this Vector2 vector, float minrange, float maxRange)
+	{
+		return new Vector2(Random.Range(minrange, maxRange), Random.Range(minrange, maxRange));
+	}
+	public static Vector3 RandomRange(this Vector3 vector, float minrange, float maxRange)
+	{
+		return new Vector3(Random.Range(minrange, maxRange), Random.Range(minrange, maxRange), Random.Range(minrange, maxRange));
+	}
 
+	#endregion
 
 	#region List<T> Extensions
 

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-[CreateAssetMenu(fileName = "NewRecipe", menuName = "New Recipe")]
-public class RecipeData: ScriptableObject
+[CreateAssetMenu(fileName = "ItemRecipe_New", menuName = "Delphino Framework/Item System/New Recipe")]
+public class ItemRecipeData: ScriptableObject
 {
 	public string RecipeName;
 	[AssetsOnly]

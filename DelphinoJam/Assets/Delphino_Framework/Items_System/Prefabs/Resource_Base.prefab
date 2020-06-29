@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2616082600944348894
+--- !u!1 &7073821333811115062
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2616082600944348890}
-  - component: {fileID: 2616082600944348891}
-  - component: {fileID: 2616082600944348892}
-  - component: {fileID: 2616082600944348893}
-  - component: {fileID: 3464682073352061687}
-  - component: {fileID: 8815714163102299929}
-  m_Layer: 0
-  m_Name: Item_Base
+  - component: {fileID: 7073821333811115082}
+  - component: {fileID: 7073821333811115083}
+  - component: {fileID: 7073821333811115060}
+  - component: {fileID: 7073821333811115061}
+  - component: {fileID: 7073821333811115080}
+  - component: {fileID: 7073821333811115086}
+  - component: {fileID: 7073821333811115081}
+  m_Layer: 12
+  m_Name: Resource_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2616082600944348890
+--- !u!4 &7073821333811115082
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616082600944348894}
+  m_GameObject: {fileID: 7073821333811115062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,21 +36,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2616082600944348891
+--- !u!33 &7073821333811115083
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616082600944348894}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2616082600944348892
+  m_GameObject: {fileID: 7073821333811115062}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7073821333811115060
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616082600944348894}
+  m_GameObject: {fileID: 7073821333811115062}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -82,39 +83,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &2616082600944348893
-SphereCollider:
+--- !u!65 &7073821333811115061
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616082600944348894}
+  m_GameObject: {fileID: 7073821333811115062}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3464682073352061687
+--- !u!114 &7073821333811115080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616082600944348894}
+  m_GameObject: {fileID: 7073821333811115062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49df73c387a84fa47ae7ec07795bc942, type: 3}
+  m_Script: {fileID: 11500000, guid: 16ea48321f550de4aba1a469f490ef5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPointerEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerClick:
+  onItemSpawning:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8815714163102299929}
-        m_MethodName: ClickItem
+      - m_Target: {fileID: 7073821333811115081}
+        m_MethodName: SpawnAllItems
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -124,38 +122,56 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onPointerExit:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerDown:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerUp:
-    m_PersistentCalls:
-      m_Calls: []
-  ColorObject: 0
-  ColorBlock:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
-    m_ColorMultiplier: 0
-    m_FadeDuration: 0
---- !u!114 &8815714163102299929
+--- !u!114 &7073821333811115086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616082600944348894}
+  m_GameObject: {fileID: 7073821333811115062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99557da7abfa7024fa4f50e38fd7c762, type: 3}
+  m_Script: {fileID: 11500000, guid: bbd97042a1ef1fb4e8dcbf44a6c9c617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 0}
-  onItemClicked:
+  LoadAtAwake: 0
+  StatsGroupData: {fileID: 0}
+  AllStats:
+    StatsInts:
+    - name: Life
+      currentValue: 100
+      MinValue: 0
+      MaxValue: 100
+      onStatChanged:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7073821333811115080}
+            m_MethodName: CheckStatsAtZero
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    StatsFloats: []
+--- !u!114 &7073821333811115081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073821333811115062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f43df86e978ca4bb53da732c5718f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RemoveAfterSpawn: 0
+  ExpulsionForce: 100
+  ItemsToSpawn: []
+  onItemSpawned:
     m_PersistentCalls:
       m_Calls: []
-  Pointable: {fileID: 0}

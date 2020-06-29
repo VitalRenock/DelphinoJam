@@ -7,10 +7,94 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[1].onStatChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[0].name
+      value: Life
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[0].currentValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[0].MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[1].name
+      value: Stamina
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[1].currentValue
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[1].MaxValue
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[1].onStatChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[1].onStatChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsInts.Array.data[1].onStatChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[0].name
+      value: JumpHeight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[0].currentValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[0].MaxValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[1].name
+      value: JumpSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[1].currentValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[1].MaxValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[2].name
+      value: FallSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[2].currentValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022723439, guid: 6b0d0000e736e8847828340543132ba7, type: 3}
+      propertyPath: AllStats.StatsFloats.Array.data[2].MaxValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1304279575421619420, guid: 6b0d0000e736e8847828340543132ba7,
         type: 3}
       propertyPath: m_Name
-      value: Player_Base
+      value: Player_1
       objectReference: {fileID: 0}
     - target: {fileID: 2006581333364315670, guid: 6b0d0000e736e8847828340543132ba7,
         type: 3}

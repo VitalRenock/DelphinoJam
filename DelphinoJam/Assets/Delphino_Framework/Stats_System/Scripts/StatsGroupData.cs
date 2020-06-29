@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Stats_New", menuName = "New Stats")]
+[CreateAssetMenu(fileName = "StatsGroup_New", menuName = "Delphino Framework/Stats System/New Stats")]
 public class StatsGroupData : ScriptableObject 
 { 
 	public StatsGroup StatsGroup; 

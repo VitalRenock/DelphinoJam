@@ -1,7 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
 public abstract class CommandProcessor : MonoBehaviour
