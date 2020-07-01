@@ -11,12 +11,13 @@ public class InputsManager : Singleton<InputsManager>
 
 	[TabGroup("Keyboard Events")] [DisableInPlayMode]
 	public List<InputKeyEvent> KeyDownEvents;
-	[TabGroup("Keyboard Events")]
-	[DisableInPlayMode]
+	[TabGroup("Keyboard Events")] [DisableInPlayMode]
 	public List<InputKeyEvent> KeyEvents;
-	[TabGroup("Keyboard Events")]
-	[DisableInPlayMode]
+	[TabGroup("Keyboard Events")] [DisableInPlayMode]
 	public List<InputKeyEvent> KeyUpEvents;
+
+	[TabGroup("Keyboard Events")] [DisableInPlayMode]
+	public MouseClickTerrainEvent onMouseClickOnTerrain = new MouseClickTerrainEvent();
 
 
 	void Update()
@@ -61,24 +62,24 @@ public class InputsManager : Singleton<InputsManager>
 	}
 
 
-	//// Temporary For Move Enemy on Terrain
-	//public void SendClickPosition()
-	//{
-	//	Vector3? destination = GetClickPosition();
+	// Temporary For Move Enemy on Terrain
+	public void SendClickPosition()
+	{
+		Vector3? destination = GetClickPosition();
 
-	//	if (destination != null)
-	//		onMouseClickOnTerrain?.Invoke((Vector3)destination);
-	//}
-	//public Vector3? GetClickPosition()
-	//{
-	//	RaycastHit raycastHit;
-	//	Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (destination != null)
+			onMouseClickOnTerrain?.Invoke((Vector3)destination);
+	}
+	public Vector3? GetClickPosition()
+	{
+		RaycastHit raycastHit;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-	//	if (Physics.Raycast(ray, out raycastHit))
-	//		return raycastHit.point;
-	//	else
-	//		return null;
-	//}
+		if (Physics.Raycast(ray, out raycastHit))
+			return raycastHit.point;
+		else
+			return null;
+	}
 }
 
 [System.Serializable] public class AxisEvent
@@ -94,6 +95,6 @@ public class InputsManager : Singleton<InputsManager>
 	public UnityEvent KeyEvent = new UnityEvent();
 }
 
-//// Temporary For Move Enemy on Terrain
-//[System.Serializable]
-//public class MouseClickTerrainEvent : UnityEvent<Vector3> { }
+// Temporary For Move Enemy on Terrain
+[System.Serializable]
+public class MouseClickTerrainEvent : UnityEvent<Vector3> { }

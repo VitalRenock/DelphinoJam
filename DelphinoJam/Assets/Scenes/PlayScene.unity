@@ -187,6 +187,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &12444770 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 1947472209}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ee8c429704b5c46b8a326504aea56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &48876419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2161,6 +2173,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4117733231744796356, guid: f354bf6614c75804ba0e9ef8ec285085,
+        type: 3}
+      propertyPath: m_Speed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4117733231744796367, guid: f354bf6614c75804ba0e9ef8ec285085,
         type: 3}
       propertyPath: m_Name
@@ -3066,7 +3083,7 @@ PrefabInstance:
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
         type: 3}
       propertyPath: KeyDownEvents.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
         type: 3}
@@ -3091,6 +3108,11 @@ PrefabInstance:
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
         type: 3}
       propertyPath: KeyEvents.Array.data[0].KeyEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
+        type: 3}
+      propertyPath: onMouseClickOnTerrain.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
@@ -3316,12 +3338,12 @@ PrefabInstance:
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
         type: 3}
       propertyPath: KeyDownEvents.Array.data[1].Name
-      value: Undo Movement
+      value: MoveEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
         type: 3}
       propertyPath: KeyDownEvents.Array.data[1].KeyCode
-      value: 256
+      value: 324
       objectReference: {fileID: 0}
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
         type: 3}
@@ -3337,11 +3359,11 @@ PrefabInstance:
         type: 3}
       propertyPath: KeyDownEvents.Array.data[1].KeyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2016256946}
+      objectReference: {fileID: 12444770}
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
         type: 3}
       propertyPath: KeyDownEvents.Array.data[1].KeyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UndoTransformPorcessor
+      value: SendClickPosition
       objectReference: {fileID: 0}
     - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
         type: 3}
@@ -3382,6 +3404,26 @@ PrefabInstance:
         type: 3}
       propertyPath: KeyEvents.Array.data[0].KeyCode
       value: 271
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
+        type: 3}
+      propertyPath: onMouseClickOnTerrain.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
+        type: 3}
+      propertyPath: onMouseClickOnTerrain.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
+        type: 3}
+      propertyPath: onMouseClickOnTerrain.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveIaAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414348832031544383, guid: 6aa88bfd1996d8543b595c8e502fc5ce,
+        type: 3}
+      propertyPath: onMouseClickOnTerrain.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6aa88bfd1996d8543b595c8e502fc5ce, type: 3}
