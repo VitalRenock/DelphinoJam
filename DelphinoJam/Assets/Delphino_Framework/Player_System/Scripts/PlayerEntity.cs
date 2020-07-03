@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 
 [RequireComponent(typeof(TransformProcessor), typeof(StatsComponent))]
-public class PlayerEntity : MonoBehaviour, IEntity
+public class PlayerEntity : MonoBehaviour
 {
 	// Temporary MoveSpeed
 	public float MoveSpeed;
@@ -69,13 +69,22 @@ public class PlayerEntity : MonoBehaviour, IEntity
 	{
 		if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Terrain"))
 		{
+			// Hit Terrain
 			Debug.Log(raycastHit.transform.name);
 		}
 		else if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Resource"))
 		{
+			// Attack Resource
 			Debug.Log(raycastHit.transform.name);
 			StatsComponent statsComponent = raycastHit.transform.gameObject.GetComponent<StatsComponent>();
 			statsComponent.GetStatsInt("Life").RemoveValue(10);
+		}
+		else if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("NPC"))
+		{
+			// Attack NPC
+			Debug.Log(raycastHit.transform.name);
+			StatsComponent stats = raycastHit.transform.gameObject.GetComponent<StatsComponent>();
+			stats.GetStatsInt("Life").RemoveValue(10);
 		}
 	}
 
