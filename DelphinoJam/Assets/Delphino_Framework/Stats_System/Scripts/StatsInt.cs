@@ -8,21 +8,24 @@ public class StatsInt
 	[TabGroup("Options")] [SerializeField] string name;
 	public string Name { get => name; }
 
-	[TabGroup("Options")] [SerializeField] int currentValue;
+	[TabGroup("Options")] [SerializeField] [ReadOnly]
+	int currentValue;
 	public int CurrentValue { get => currentValue; }
 
+	[TabGroup("Options")] public int StartValue;
 	[TabGroup("Options")] public int MinValue;
 	[TabGroup("Options")] public int MaxValue;
 
 	[TabGroup("Events")] public StatsIntEvent onStatChanged;
 
-	public StatsInt(string name, int value = 0, int minValue = int.MinValue, int maxValue = int.MaxValue)
+	public StatsInt(string name, int startValue, int minValue = int.MinValue, int maxValue = int.MaxValue)
 	{
 		SetName(name);
-
-		currentValue = value;
+		StartValue = startValue;
 		MinValue = minValue;
 		MaxValue = maxValue;
+
+		ValueToStart();
 		ClampValue();
 
 		onStatChanged = new StatsIntEvent();
@@ -52,6 +55,7 @@ public class StatsInt
 	public void ValueToMin() => currentValue = MinValue;
 	public void ValueToMax() => currentValue = MaxValue;
 	public void ValueToZero() => currentValue = 0;
+	public void ValueToStart() => currentValue = StartValue;
 
 	void ClampValue() => currentValue = Mathf.Clamp(currentValue, MinValue, MaxValue);
 }

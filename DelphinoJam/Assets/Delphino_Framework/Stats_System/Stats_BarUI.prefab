@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2957690067450533757}
   - component: {fileID: 2957690067450533759}
   m_Layer: 5
-  m_Name: Life_BarUI
+  m_Name: Stats_BarUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -890, y: 510}
-  m_SizeDelta: {x: 100, y: 20}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2957690067450533756
 CanvasRenderer:
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4081667, g: 0.752, b: 0.18873724, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -88,9 +88,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FillMethod: 0
-  LoadAtAwake: 1
+  LoadAtAwake: 0
   StatsComponent: {fileID: 0}
-  StatsNameToLoad: Life
+  StatsNameToLoad: 
   AutoUpdate: 1
   onBarUpdated:
     m_PersistentCalls:

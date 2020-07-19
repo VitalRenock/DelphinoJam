@@ -12,6 +12,6 @@ public class GameData : ScriptableObject
 	[TabGroup("Camera")][AssetsOnly]
 	public CameraData CameraData;
 
-	[TabGroup("Player")][AssetsOnly]
-	public PlayerData PlayerData;
+	//[TabGroup("Player")][AssetsOnly]
+	//public PlayerData PlayerData;
 }

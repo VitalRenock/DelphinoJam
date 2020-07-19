@@ -1,152 +1,120 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
-using UnityEngine.PlayerLoop;
+using UnityEngine.Animations;
 
-[RequireComponent(typeof(RigidbodyController))]
+[RequireComponent(typeof(TransformProcessor), typeof(StatsComponent))]
 public class Player : MonoBehaviour
 {
-	[ReadOnly] public PlayerState State = new PlayerState();
+	// Temporary MoveSpeed
+	public float MoveSpeed;
+	public float StrafeSpeed;
+	public float RotateSpeed;
+	public float CamRotateSpeed;
+	public int AttackValue;
 
-	[FoldoutGroup("Dependencies")] [ReadOnly] 
-	public RigidbodyController RigidController;
+	TransformProcessor transformProcessor;
 
-	[FoldoutGroup("Dependencies")] [ReadOnly]
-	public Inventory Inventory;
+	StatsIntProcessor statsIntProcessor;
+	StatsComponent statsComponent;
+	// Temporary Stamina shortcut
+	StatsInt Stamina;
 
-	[FoldoutGroup("Dependencies")] [ReadOnly]
-	public StatsComponent StatsComponent;
-
+	Camera cameraPlayer;
 
 	private void Awake()
 	{
-		RigidController = gameObject.GetOrAddComponent<RigidbodyController>();
-		Inventory = gameObject.GetOrAddComponent<Inventory>();
-		StatsComponent = gameObject.GetOrAddComponent<StatsComponent>();
+		transformProcessor = GetComponent<TransformProcessor>();
+		statsComponent = GetComponent<StatsComponent>();
+		statsIntProcessor = GetComponent<StatsIntProcessor>();
 
-		State = PlayerState.Standing;
+		// Temporary Stamina
+		Stamina = statsComponent.GetStatsInt("Stamina");
+
+		cameraPlayer = GetComponentInChildren<Camera>();
 	}
 
-	//private void Update() => StateManagement();
-
-	private void OnCollisionEnter(Collision collision)
+	public void MoveCommandCalls(float input)
 	{
-		// Reset Jump
-		if (State == PlayerState.Jumping || State == PlayerState.DoubleJumping)
+		// Stamina...
+		float finalSpeed = input * MoveSpeed * Time.deltaTime;
+		CommandTransformTranslate command = new CommandTransformTranslate(transform, Axis.Z, finalSpeed, Space.Self);
+		transformProcessor.ExecuteCommand(command);
+	}
+	public void StrafeCommandCalls(float input)
+	{
+		// Stamina...
+		float finalSpeed = input * StrafeSpeed * Time.deltaTime;
+		CommandTransformTranslate command = new CommandTransformTranslate(transform, Axis.X, finalSpeed, Space.Self);
+		transformProcessor.ExecuteCommand(command);
+	}
+	public void RotateCommandCalls(float input)
+	{
+		// Stamina...
+		float finalSpeed = input * RotateSpeed * Time.deltaTime;
+		CommandTransformRotate command = new CommandTransformRotate(transform, Axis.Y, finalSpeed, Space.Self);
+		transformProcessor.ExecuteCommand(command);
+	}
+	public void RotateCameraCommandCalls(float input)
+	{
+		float finalSpeed = -input * CamRotateSpeed * Time.deltaTime;
+		CommandTransformRotate command = new CommandTransformRotate(cameraPlayer.transform, Axis.X, finalSpeed, Space.Self);
+		transformProcessor.ExecuteCommand(command);
+	}
+	public void UndoTransformProcessor() => transformProcessor.UndoCommand();
+
+	public void CameraHitCalls(RaycastHit raycastHit)
+	{
+		if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Terrain"))
 		{
-			State = PlayerState.Standing;
-			RigidController.jumpCount = 0;
+			// Hit Terrain
+			Debug.Log(raycastHit.transform.name);
+		}
+		else if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Resource"))
+		{
+			// Attack Resource
+			Debug.Log(raycastHit.transform.name);
+			StatsComponent statsComponent = raycastHit.transform.gameObject.GetComponent<StatsComponent>();
+			statsComponent.GetStatsInt("Life").RemoveValue(10);
+		}
+		else if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("NPC"))
+		{
+			// Attack NPC
+			Debug.Log(raycastHit.transform.name);
+			Enemy enemy = raycastHit.transform.GetComponent<Enemy>();
+			enemy.Life.RemoveValue(AttackValue);
 		}
 	}
 
+	#region Temporary Jump
 
-	void StateManagement()
+	// Temporary Jump
+	Coroutine coroutineIsJumping;
+	public void Jump()
 	{
-		switch (State)
-		{
-			case PlayerState.Standing:
-
-				#region Conditions
-
-				if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Mouse X") != 0)
-				{
-					State = PlayerState.Moving;
-					return;
-				}
-				if (Input.GetKeyDown(KeyCode.Space) && RigidController.jumpCount < RigidController.MaxJump)
-				{
-					State = PlayerState.Jumping;
-					RigidController.Jump();
-					return;
-				}
-
-				#endregion
-
-				#region Actions
-
-				#endregion
-
-				break;
-
-			case PlayerState.Moving:
-
-				#region Conditions
-
-				if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Mouse X") == 0)
-				{
-					State = PlayerState.Standing;
-					return;
-				}
-				if (Input.GetKeyDown(KeyCode.Space) && RigidController.jumpCount < RigidController.MaxJump)
-				{
-					State = PlayerState.Jumping;
-					RigidController.Jump();
-					return;
-				}
-
-				#endregion
-
-				#region Actions
-
-				RigidController.Move();
-				RigidController.Turn();
-
-				#endregion
-
-				break;
-
-			case PlayerState.Jumping:
-
-				#region Conditions
-
-				if (Input.GetKeyDown(KeyCode.Space) && RigidController.jumpCount < RigidController.MaxJump)
-				{
-					State = PlayerState.DoubleJumping;
-					RigidController.Jump();
-				}
-				// See also OnColliderEnter()
-
-				#endregion
-
-				#region Actions
-
-				//RigidController.Move();
-				RigidController.Turn();
-
-				#endregion
-
-				break;
-
-			case PlayerState.DoubleJumping:
-
-				#region Conditions
-
-				if (Input.GetKeyDown(KeyCode.Space) && RigidController.jumpCount < RigidController.MaxJump)
-					RigidController.Jump();
-				// See also OnColliderEnter()
-
-				#endregion
-
-				#region Actions
-
-				//RigidController.Move();
-				RigidController.Turn();
-
-				#endregion
-
-				break;
-
-			default:
-				break;
-		}
+		if (coroutineIsJumping == null)
+			coroutineIsJumping = StartCoroutine(IsJumping(statsComponent.GetStatsFloat("JumpHeight").CurrentValue));
 	}
-}
+	IEnumerator IsJumping(float jumpHeight)
+	{
+		float startY = transform.position.y;
 
-public enum PlayerState
-{
-	Standing,
-	Moving,
-	Jumping,
-	DoubleJumping
+		while (transform.position.y < startY + jumpHeight)
+		{
+			transform.Translate(Vector3.up * statsComponent.GetStatsFloat("JumpSpeed").CurrentValue * Time.deltaTime, Space.Self);
+			yield return null;
+		}
+
+		yield return new WaitForSeconds(0.1f);
+
+		while (transform.position.y > startY)
+		{
+			transform.Translate(Vector3.down * statsComponent.GetStatsFloat("FallSpeed").CurrentValue * Time.deltaTime, Space.Self);
+			yield return null;
+		}
+		transform.position = new Vector3(transform.position.x, startY, transform.position.z);
+		coroutineIsJumping = null;
+	}
+
+	#endregion
 }

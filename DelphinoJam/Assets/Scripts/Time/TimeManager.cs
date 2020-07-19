@@ -47,7 +47,7 @@ public class TimeManager : Singleton<TimeManager>
 
 	IEnumerator LoopCycle()
 	{
-		Debugger.I.DebugMessage("Start > LoopCycle");
+		//Debugger.I.DebugMessage("Start > LoopCycle");
 
 		if (TimeCycles.Count <= 0)
 		{
@@ -73,7 +73,7 @@ public class TimeManager : Singleton<TimeManager>
 
 	IEnumerator StartCycle(TimeCycle timeCycle)
 	{
-		Debugger.I.DebugMessage("Start > StartCycle");
+		//Debugger.I.DebugMessage("Start > StartCycle");
 
 		OnSwitchCycle.Invoke(timeCycle);
 
